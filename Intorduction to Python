@@ -1,0 +1,146 @@
+"""
+Program 1 : Write a python program to calculate total number of vowels
+and count of each individual vowels A,E,I,O,U
+in the string ' Guvi Geeks Network Private Network
+"""
+def count_vowels(s):
+s = s.lower()
+vowels = 'aeiou'
+vowel_count = {v: 0 for v in vowels}
+total_vowels = 0
+for char in s:
+if char in vowels:
+vowel_count[char] += 1
+total_vowels += 1
+return total_vowels, vowel_count
+string = 'Guvi Geeks Network Private Network'
+total_vowels, vowel_count = count_vowels(string)
+print(f"Total number of vowels: {total_vowels}")
+print("Count of each individual vowel:")
+for vowel, count in vowel_count.items():
+print(f"{vowel.upper()}: {count}")
+
+"""
+Program 2 : Create a pramid of numbers 1 to 20 using For loop
+"""
+def number_pyramid(n):
+num = 1
+for i in range(1, n + 1):
+for j in range(i):
+if num <= 20:
+print(num, end=' ')
+num += 1
+else:
+break
+print()
+max_rows = 20
+number_pyramid(max_rows)
+
+"""
+Program 3 : Write a program that takes a string and returns a new string with the all vowels removed
+"""
+def remove_vowels(s):
+vowels = 'aeiouAEIOU'
+result = ''.join([char for char in s if char not in vowels])
+return result
+string = "Guvi Geeks Network Private Network"
+new_string = remove_vowels(string)
+print(f"Original string: {string}")
+print(f"String with vowels removed: {new_string}")
+
+"""
+Program 4 :Write a program that takes a string and returns the number of unique characters in it
+"""
+def count_unique_characters(s):
+unique_chars = set(s)
+return len(unique_chars)
+string = "Guvi Geeks Network Private Network"
+unique_char_count = count_unique_characters(string)
+print(f"String: {string}")
+print(f"Number of unique characters: {unique_char_count}")
+
+"""
+Program 5 : Write a program that takes a string and
+returns True if it is palindrome , False otherwise
+"""
+
+def is_palindrome(s):
+cleaned_str = ''.join(char.lower() for char in s if char.isalnum())
+return cleaned_str == cleaned_str[::-1]
+test_string = "A man, a plan, a canal, Panama"
+result = is_palindrome(test_string)
+print(f"String: {test_string}")
+print(f"Is palindrome: {result}")
+
+"""
+Program 6 : write a program that takes two strings
+and returns a longest common substring between them
+"""
+def longest_common_substring(s1, s2):
+len1, len2 = len(s1), len(s2)
+lcsuff = [[0] * (len2 + 1) for _ in range(len1 + 1)]
+longest_length = 0
+end_index_s1 = 0
+for i in range(1, len1 + 1):
+for j in range(1, len2 + 1):
+if s1[i - 1] == s2[j - 1]:
+lcsuff[i][j] = lcsuff[i - 1][j - 1] + 1
+if lcsuff[i][j] > longest_length:
+longest_length = lcsuff[i][j]
+end_index_s1 = i - 1
+else:
+lcsuff[i][j] = 0
+if longest_length == 0:
+return ""
+start_index_s1 = end_index_s1 - longest_length + 1
+return s1[start_index_s1:end_index_s1 + 1]
+s1 = "GuviGeeks"
+s2 = "GeeksForGuvi"
+result = longest_common_substring(s1, s2)
+print(f"String 1: {s1}")
+print(f"String 2: {s2}")
+print(f"Longest common substring: {result}")
+
+"""
+Program 7 : write a program that takes a string and returns the most frequent character in it
+"""
+def most_frequent_character(s):
+frequency = {}
+for char in s:
+if char in frequency:
+frequency[char] += 1
+else:
+frequency[char] = 1
+most_frequent = max(frequency, key=frequency.get)
+return most_frequent
+string = "Guvi Geeks Network Private Network"
+result = most_frequent_character(string)
+print(f"String: {string}")
+print(f"Most frequent character: {result}")
+
+"""
+Program : 8 write a program that takes a string and
+returns True if it anagram of another string ,False otherwise
+"""
+def are_anagrams(s1, s2):
+s1 = s1.replace(" ", "").lower()
+s2 = s2.replace(" ", "").lower()
+return sorted(s1) == sorted(s2)
+string1 = "Listen"
+string2 = "Silent"
+result = are_anagrams(string1, string2)
+print(f"String 1: {string1}")
+print(f"String 2: {string2}")
+print(f"Are anagrams: {result}")
+
+"""
+Program 9 : write a program that takes a string and returns the number of words in it
+"""
+def count_words(s):
+words = s.split()
+return len(words)
+string = "Guvi Geeks Network Private Network"
+word_count = count_words(string)
+print(f"String: {string}")
+print(f"Number of words: {word_count}")
+
