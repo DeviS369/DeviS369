@@ -1,0 +1,207 @@
+Program 1 : You have been given a python list [10,501,22,37,100,999,85,351]
+your task is to ceate a two list one which have all the Even numbers and
+another list which will have all the ODD numbers in it
+
+def separate_even_odd(numbers):
+even_numbers = []
+odd_numbers = []
+for number in numbers:
+if number % 2 == 0:
+even_numbers.append(number)
+else:
+odd_numbers.append(number)
+return even_numbers, odd_numbers
+numbers = [10, 501, 22, 37, 100, 999, 85, 351]
+even_numbers, odd_numbers = separate_even_odd(numbers)
+print(f"Original list: {numbers}")
+print(f"Even numbers: {even_numbers}")
+print(f"Odd numbers: {odd_numbers}")
+
+"""
+Program : 2 Given a python list [10,501,22,37,100,999,85,351]
+to count all the prime numbers and create a new python list
+which will contain all the prime numbers in it
+"""
+def is_prime(n):
+if n <= 1:
+return False
+for i in range(2, int(n ** 0.5) + 1):
+if n % i == 0:
+return False
+return True
+def prime_numbers_in_list(numbers):
+prime_numbers = []
+for number in numbers:
+if is_prime(number):
+prime_numbers.append(number)
+return prime_numbers
+numbers = [10, 501, 22, 37, 100, 999, 85, 351]
+prime_numbers = prime_numbers_in_list(numbers)
+print(f"Original list: {numbers}")
+print(f"Prime numbers: {prime_numbers}")
+print(f"Count of prime numbers: {len(prime_numbers)}")
+
+"""
+Program 3 : Given a python list [10,501,22,37,100,999,85,351]
+how many numbers are there in the python list which are happy numbers
+"""
+def is_happy_number(n):
+def get_next(number):
+return sum(int(char) ** 2 for char in str(number))
+seen = set()
+while n != 1 and n not in seen:
+seen.add(n)
+n = get_next(n)
+return n == 1
+def count_happy_numbers(numbers):
+happy_numbers = [num for num in numbers if is_happy_number(num)]
+return len(happy_numbers), happy_numbers
+numbers = [10, 501, 22, 37, 100, 999, 85, 351]
+count, happy_numbers = count_happy_numbers(numbers)
+print(f"Original list: {numbers}")
+print(f"Happy numbers: {happy_numbers}")
+print(f"Count of happy numbers: {count}")
+
+"""
+Program 4 : write a python program to find the sum of the first
+and last digit of an integer
+"""
+def sum_first_last_digit(n):
+num_str = str(n)
+first_digit = int(num_str[0])
+last_digit = int(num_str[-1])
+return first_digit + last_digit
+number = 12345
+result = sum_first_last_digit(number)
+print(f"Number: {number}")
+print(f"Sum of the first and last digits: {result}")
+
+"""
+Program 5 :A list of N integers which represent the number of mangoes
+in a bag .Each bag has a varaiable number of mangoes .
+There a M students in Guvi class to distribute the mangoes in such a way
+that each student get one bag.The difference between the number of bags
+with minimum mangoes given to the student in minimum.
+"""
+
+def min_difference_in_mangoes(bags, M):
+bags.sort()
+min_diff = float('inf')
+for i in range(len(bags) - M + 1):
+current_diff = bags[i + M - 1] - bags[i]
+if current_diff < min_diff:
+min_diff = current_diff
+
+return min_diff
+bags = [10, 501, 22, 37, 100, 999, 85, 351]
+M = 3
+result = min_difference_in_mangoes(bags, M)
+print(f"List of mangoes in bags: {bags}")
+print(f"Minimum difference between maximum and minimum mangoes in any group of {M} bags: {result}")
+
+"""
+Program 6 : Given three list .taks is to find the duplicates in the three list .
+write a python program for the same.you can use your py list
+"""
+def find_duplicates(list1, list2, list3):
+set1 = set(list1)
+set2 = set(list2)
+set3 = set(list3)
+common_elements = set1 & set2 & set3
+duplicates = list(common_elements)
+return duplicates
+list1 = [10, 501, 22, 37, 100, 999, 85, 351]
+list2 = [12, 37, 85, 999, 67, 501, 123]
+list3 = [501, 37, 999, 85, 78, 22]
+duplicates = find_duplicates(list1, list2, list3)
+print(f"List 1: {list1}")
+print(f"List 2: {list2}")
+print(f"List 3: {list3}")
+print(f"Duplicates in all three lists: {duplicates}")
+
+"""
+Program 7 : Program for find the non reapting elements in a given list of integers
+"""
+def find_non_repeating_elements(numbers):
+frequency = {}
+for number in numbers:
+if number in frequency:
+frequency[number] += 1
+else:
+frequency[number] = 1
+non_repeating_elements = [number for number, count in frequency.items() if count == 1]
+return non_repeating_elements
+numbers = [10, 501, 22, 37, 100, 999, 85, 351, 22, 100, 501, 37]
+non_repeating_elements = find_non_repeating_elements(numbers)
+print(f"List of integers: {numbers}")
+print(f"Non-repeating elements: {non_repeating_elements}")
+
+"""
+Program 8 : To find the minimum element in rated and sorted list in python
+"""
+
+def find_min_in_rotated_sorted_list(nums):
+left, right = 0, len(nums) - 1
+if len(nums) == 0:
+return None
+if len(nums) == 1:
+return nums[0]
+if nums[right] >= nums[0]:
+return nums[0]
+while left <= right:
+mid = (left + right) // 2
+if nums[mid] > nums[mid + 1]:
+return nums[mid + 1]
+if nums[mid - 1] > nums[mid]:
+return nums[mid]
+if nums[mid] > nums[0]:
+left = mid + 1
+else:
+right = mid - 1
+rotated_sorted_list = [4, 5, 6, 7, 0, 1, 2]
+min_element = find_min_in_rotated_sorted_list(rotated_sorted_list)
+print(f"Rotated sorted list: {rotated_sorted_list}")
+print(f"Minimum element: {min_element}")
+
+"""
+Program 9 : Given a python list [10,20,30,9] and a value 59 ,
+write a python program to find a triblet in the list whose sum is equal to the
+given value
+"""
+
+def find_triplet_with_sum(nums, target_sum):
+n = len(nums)
+for i in range(n - 2):
+for j in range(i + 1, n - 1):
+for k in range(j + 1, n):
+if nums[i] + nums[j] + nums[k] == target_sum:
+return (nums[i], nums[j], nums[k])
+return None
+numbers = [10, 20, 30, 9]
+target_sum = 59
+triplet = find_triplet_with_sum(numbers, target_sum)
+if triplet:
+print(f"Triplet found: {triplet}")
+else:
+print("No triplet found with the given sum.")
+"""
+Program 10 : Given a list [4,2,-3,1,6] .
+write a python program to find if there is a sub list with sum equal to zero
+"""
+
+def has_zero_sum_sublist(nums):
+cumulative_sums = set()
+current_sum = 0
+for num in nums:
+current_sum += num
+if current_sum == 0 or current_sum in cumulative_sums:
+return True
+cumulative_sums.add(current_sum)
+return False
+numbers = [4, 2, -3, 1, 6]
+result = has_zero_sum_sublist(numbers)
+if result:
+print("There is a sublist with sum equal to zero.")
+else:
+print("There is no sublist with sum equal to zero.")
+
